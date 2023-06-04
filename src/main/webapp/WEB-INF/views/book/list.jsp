@@ -1,0 +1,44 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>All books</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/table.css">
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>Lp.</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Pages</th>
+        <th>Publisher</th>
+        <th>Authors</th>
+        <th>Category</th>
+    </tr>
+    <c:forEach items="${books}" var="book">
+        <tr>
+            <td>${book.id}</td>
+            <td>${book.title}</td>
+            <td>${book.rating}</td>
+            <td>${book.description}</td>
+            <td>${book.pages}</td>
+            <td>${book.publisher.name}</td>
+            <td>${book.authors}</td>
+            <td>${book.category.name}</td>
+            <td>
+                <c:forEach items="${book.authors}" var="author">
+                    ${author.fullName}
+                </c:forEach>
+            </td>
+            <td><a href="edit?id=${book.id}">Edit</a></td>
+            <td><a href="remove?id=${book.id}" onclick="return confirm('Are you sure?')">Remove</a></td>
+        </tr>
+    </c:forEach>
+</table>
+
+</body>
+</html>
+
